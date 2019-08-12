@@ -1,7 +1,7 @@
 var Ajv = require('ajv');
 const f5 = require('./f5.json')
 const payload = require('./test.json')
-var ajv = new Ajv();
+var ajv = new Ajv({ allErrors: true });
 
 var validate = ajv.addFormat('f5bigip', /./)
 .addFormat('f5label', /./)
