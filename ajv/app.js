@@ -2,6 +2,7 @@ var Ajv = require('ajv');
 var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser')
+var cors = require('cors')
 
 //JSON Schema
 const f5 = require('./f5.json')
@@ -34,11 +35,17 @@ var validate = ajv
 //Parse JSON
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cors({
+  'allowedHeaders': ['Content-Type'],
+  'origin': '*',
+  'preflightContinue': true
+}));
+
 
 //POST route
 app.post('/eliezersbaby/verify', function (req, res) {
   test(req.body);
-
+  console.log(req.body);
   function test(data) {
     var valid = validate(data);
     if (valid) {
@@ -48,7 +55,7 @@ app.post('/eliezersbaby/verify', function (req, res) {
         json: true,  
         auth: {'user': 'admin',
         'pass': 'admin',},
-        body: payload
+        body: req.body
     }, function (error, response, body){
         //console.log(response);
     });
