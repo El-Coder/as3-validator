@@ -1,6 +1,14 @@
 # as3-validator
 
-To start server
+To start go to root directory 
 ```
-npm start
+ npm install
+```
+Then
+```
+ npm start
+```
+Then cd into ajv folder 
+```
+ npm start
 ```
