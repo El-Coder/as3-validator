@@ -6,7 +6,8 @@ import axios from 'axios'
 class MyForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: ''
+    this.state = { value: '',
+    errormessage:''
     };
     this.myChangeHandler = this.myChangeHandler.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,15 +19,14 @@ class MyForm extends React.Component {
       
   };
   handleSubmit(event) {
-    var payload= JSON.parse(this.state.value);
+    var payload = JSON.parse(this.state.value);
     event.preventDefault();
- 
-    console.log(this.state.value)
-          axios.post(`http://localhost:4000/eliezersbaby/verify`, payload)
-        .then(res => {
-          //console.log(res);
-          //console.log(res.data);
-        })
+
+    axios.post(`http://localhost:4000/eliezersbaby/verify`, payload) 
+      .then(res => {
+          this.setState({errormessage: res.data});
+
+      })
   }
 
      
@@ -36,10 +36,9 @@ class MyForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h1>AS3 Validator</h1>
           <p>
-            Your Declaration is:
-            {this.state.errormessage}
+            Your Declaration is {this.state.errormessage}
           </p>
-          <textarea className="textboxclass" name="name" value={this.state.value} onChange={this.myChangeHandler} cols='50' rows='10'  />
+          <textarea className="textboxclass" value={this.state.value} onChange={this.myChangeHandler} cols='50' rows='10'  />
           <input
             type="submit" value="Submit">
             </input>

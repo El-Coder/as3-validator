@@ -45,7 +45,7 @@ app.use(cors({
 //POST route
 app.post('/eliezersbaby/verify', function (req, res) {
   test(req.body);
-  console.log(req.body);
+
   function test(data) {
     var valid = validate(data);
     if (valid) {
@@ -57,15 +57,16 @@ app.post('/eliezersbaby/verify', function (req, res) {
         'pass': 'admin',},
         body: req.body
     }, function (error, response, body){
-        //console.log(response);
+        
     });
-
+    res.send('Valid: Now Deploying to BIG-IP')
     }
 
-    else console.log('Invalid: ' + ajv.errorsText(validate.errors));
+    else res.send('Invalid: ' + ajv.errorsText(validate.errors));
+    
   }
 
-  res.send("Now Deploying to BIG-IP")
+  
 })
 
 
