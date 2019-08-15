@@ -7,3 +7,20 @@
   width: 400px;
   resize: none;
 }
+.submitclass{
+  position: absolute;
+  margin-top: 525px;
+  margin-left: -250px;
+}
+.validationbox{
+  background-color: lightgrey;
+  height: 505px;
+  width: 400px;
+  float: left;
+  margin-left: 450px;
+  margin-top: -510px;
+}
+.validationheader{
+  margin-left: 550px;
+}
+

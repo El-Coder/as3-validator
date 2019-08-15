@@ -16,7 +16,6 @@ class MyForm extends React.Component {
   myChangeHandler = event => {
       this.setState({ value: event.target.value});
       
-      
   };
   handleSubmit(event) {
     var payload = JSON.parse(this.state.value);
@@ -35,14 +34,19 @@ class MyForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <h1>AS3 Validator</h1>
-          <p>
-            Your Declaration is {this.state.errormessage}
-          </p>
+          <p className="validationheader">
+      Validation Results:
+    </p>
           <textarea className="textboxclass" value={this.state.value} onChange={this.myChangeHandler} cols='50' rows='10'  />
           <input
-            type="submit" value="Submit">
+            type="submit" value="Validate" className="submitclass">
             </input>
         </form>
+
+        <div className="validationbox">
+  
+          {this.state.errormessage}
+        </div>
       </div>
     );
   }
