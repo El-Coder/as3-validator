@@ -1,6 +1,6 @@
 # as3-validator
 
-To start go to root directory 
+This repo assumes you have a BIG-IP running locally. To start go to root directory 
 ```
  npm install
 ```
